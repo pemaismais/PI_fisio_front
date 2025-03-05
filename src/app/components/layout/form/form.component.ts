@@ -30,6 +30,17 @@ export class FormComponent {
     private snackBar: MatSnackBar 
   ) {}
 
+  
+  ngOnInit(){
+    const joints = this.selectionService.getSelectedRegions()
+    if(joints.length > 0){
+      console.log(joints)
+      joints.forEach(j => {
+        this.exercicio1(j)
+      });
+    }
+  }
+  
   exercicio1(buttonId: string) {
     this.buttonStates[buttonId] = !this.buttonStates[buttonId];
   }

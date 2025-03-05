@@ -6,7 +6,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
 import { GoogleInitOptions, GoogleLoginProvider, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
-import { environment } from './environments/enviroment';
+import { environment } from '../environments/environment';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { meuhttpInterceptor } from './services/http-interceptor.service';
 

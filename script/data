@@ -1,0 +1,225 @@
+   {
+   name: "Cervical",
+    exercicios: [
+        {
+            intensity: "1",
+            name: "Flexão e Extensão Pescoço",
+            description: "Para realizarmos esse exercícios vamos estar jogando a cabeça para frente a para trás de forma controlada realizando o movimento lento. 3 Séries 6 Reps",
+            videoUrl: "https://www.youtube.com/embed/sguxo1768sQ"
+        },
+        {
+            intensity: "1",
+            name: "Flexão Lateral Pescoço.",
+            description: "Para realizarmos esse exercícios vamos estar jogando a cabeça para os lados como se fosse encostar a orelha no ombro de forma controlada e respeitando os limites. 3 Séries 6 Reps",
+            videoUrl: "https://www.youtube.com/embed/KhU4fl6UMz4"
+        },
+        {
+            intensity: "2",
+            name: "Flexão e Extensão Pescoço",
+            description: "Para realizarmos esse exercícios vamos estar jogando a cabeça para frente a para trás de forma controlada realizando o movimento lento. 3 Séries 6 Reps. ",
+            videoUrl: "https://www.youtube.com/embed/sguxo1768sQ" 
+        },
+        {
+            intensity: "2",
+            name: "Flexão Lateral Pescoço.",
+            description: "Para realizarmos esse exercícios vamos estar jogando a cabeça para os lados como se fosse encostar a orelha no ombro de forma controlada e respeitando os limites. 3 Séries 10 Reps",
+            videoUrl: "https://www.youtube.com/embed/KhU4fl6UMz4"
+        },
+        {
+            intensity: "3",
+            name: "Flexão e Extensão Pescoço",
+            description: "Para realizarmos esse exercícios vamos estar jogando a cabeça para frente a para trás de forma controlada realizando o movimento lento. 3 Séries 12 Reps ",
+            videoUrl: "https://www.youtube.com/embed/sguxo1768sQ" 
+        }]
+        },
+        {
+            name: "Ombro",
+            exercicios:[
+                {
+                    intensity: "1",
+                    name: "Elevação Lateral",
+                    description: "Para realizarmos a elevação Lateral vamos posicionar os braços rentes ao tronco e elevá-los com o cotovelo estendido até a linha do ombro e então retornar à posição inicial. 3 Séries 6 Reps.",
+                    videoUrl: "https://www.youtube.com/embed/HPt5Ur4X1BU"
+                },
+                {
+                    intensity: "1",
+                    name: "Elevação Frontal",
+                    description: "Para realizarmos a elevação Frontal vamos posicionar os braços para frente com a palma para baixo e elevá-los com o cotovelo estendido até a linha do ombro e então retornar à posição inicial. 3 Séries 6 Reps.",
+                    videoUrl: "https://www.youtube.com/embed/GbraSpPkw-4" 
+                },
+                {
+                    intensity: "2",
+                    name: "Elevação Lateral",
+                    description: "Para realizarmos a elevação Lateral vamos posicionar os braços rentes ao tronco e elevá-los com o cotovelo estendido até a linha do ombro e então retornar à posição inicial. 3 Séries 10 Reps.",
+                    videoUrl: "https://www.youtube.com/embed/HPt5Ur4X1BU"
+                },
+                {
+                    intensity: "2",
+                    name: "Rotação Interna e Externa de Ombro (Manguito)",
+                    description: "Para realizarmos a Rotação Interna e Externa dos ombros vamos posicionar os braços rentes ao corpo e então flexionar os cotovelos e sem tirar o cotovelo de próximo ao tronco vamos fazer o movimento de rotação assim como demonstrado no vídeo. 3 Séries 10 Reps.",
+                    videoUrl: "https://www.youtube.com/embed/GfN7TKJombQ"  
+                },
+                {
+                    intensity: "3",
+                    name: "Shoulder Press ",
+                    description: "Para realizarmos o Shoulder Pre.ss ficaremos sentados e então para a posição inicial ficaremos com os cotovelos flexionados abaixo das linhas do ombro com as mãos voltadas para cima e vamos esticar os cotovelos. 3 Séries 12 Reps.",
+                    videoUrl: "https://www.youtube.com/embed/XQxEFHp6zXQ"  
+                },
+                {
+                    intensity: "3",
+                    name: "Adução de Ombro",
+                    description: "Para realizarmos a adução e abdução de de ombro vamos posicionar os braços na linha do ombro sobrepostos um ao outro, com os cotovelos flexionados vamos realizar o movimento como se fosse um abraço. 3 Séries 12 Reps.",
+                    videoUrl: "https://www.youtube.com/embed/3TjzZO-7dkw"   
+                },
+    
+            ]
+        },
+        {
+            name: "Lombar",
+            exercicios:[
+                {
+                    intensity: "1",
+                    name: "Ponte",
+                    description: "Deitar no chão na posição central (barriga para baixo). Estique as pernas e una os pés, apoie as palmas das mãos no chão, logo abaixo de seus ombros. Contraindo os abdominais e os glúteos, eleve o tronco, esticando os braços. 3 Séries 30 segundos",
+                    videoUrl: "https://www.youtube.com/embed/6nA_T3v2jcY"
+                },
+                {
+                    intensity: "1",
+                    name: "Rotação de Coluna com joelhos juntos",
+                    description: "Deitar no chão na posição central (barriga para baixo). Estique as pernas e una os pés, apoie as palmas das mãos no chão, logo abaixo de seus ombros. Contraindo os abdominais e os glúteos, eleve o tronco, esticando os braços. 3 Séries 6 Reps",
+                    videoUrl: "https://www.youtube.com/embed/frP8VwIKJ6k" 
+                },
+                {
+                    intensity: "2",
+                    name: "Alongamento sentado perna cruzada",
+                    description: "Para esse exercício ficaremos sentados e com as pernas esticadas, flexionando um joelho e passaremos uma perna sobre a outra e rotacionar o tronco para o lado contrário, segurar nessa posição por 5 segundos e voltar à posição inicial. 3 Séries 5 Reps",
+                    videoUrl: "https://www.youtube.com/embed/geEXbley788" 
+                },
+                {
+                    intensity: "2",
+                    name: "Prancha",
+                    description: "Deitar no chão de barriga para baixo e então vamos esticar as pernas e os pés, apoiar nosso antebraço no chão e contrair o abdômen e os glúteos elevar o tronco e manter nessa posição durante 30 segundos. 3 Séries 30 Segundos",
+                    videoUrl: "https://www.youtube.com/embed/8YtX-e2kI5Q"
+                },
+                {
+                    intensity: "3",
+                    name: "Extensão Lombar",
+                    description: "Para realizarmos esse exercícios ficaremos de barriga para baixo com as mãos atrás da cabeça e sem tirar o quadril do chão elevar a cabeça e o tronco para cima, mantendo a visão em sentido horizontal. 3 Séries 12 Reps",
+                    videoUrl: "https://www.youtube.com/embed/bDVtXm4e1FE"
+                },
+                {
+                    intensity: "3",
+                    name: "Prancha",
+                    description: "Deitar no chão de barriga para baixo e então vamos esticar as pernas e os pés, apoiar nosso antebraço no chão e contrair o abdômen e os glúteos elevar o tronco e manter nessa posição durante 30 segundos. 3 Séries 30 Segundos",
+                    videoUrl: "https://www.youtube.com/embed/8YtX-e2kI5Q"
+                },
+            ]
+        },
+        {
+            name: "Quadril", 
+            exercicios:[ 
+                {
+                    intensity: "1",
+                    name: "Flexão de Quadril",
+                    description: "Em pé mantenha os joelhos estendidos e levante a perna escolhida sua frente o máximo que puder, controle o movimento de volta para a posição inicial, realize 3 séries de 6 repetições com cada perna.",
+                    videoUrl: "https://www.youtube.com/embed/HpJgp-hhpho"
+                },            
+                {
+                    intensity: "1",
+                    name: "Abdução e Adução Quadril",
+                    description: "Em pé mantenha os joelhos estendidos e levante a perna para o lado seguindo a linha do quadril máximo que puder, controle o movimento de volta para a posição inicial, realize 3 séries de 6 repetições com cada perna.",
+                    videoUrl: "https://www.youtube.com/embed/s1nerQyhPng" 
+                },
+                {
+                    intensity: "2",
+                    name: "Flexão Quadril Isometria",
+                    description: "Em pé mantenha os joelhos estendidos e levante a perna escolhida sua frente o máximo que puder segure no ponto máximo por 3s controle o movimento de volta para a posição inicial, realize 3 séries de 8 repetições com cada perna.",
+                    videoUrl: "https://www.youtube.com/embed/Zny3LU1DNqs"
+                },     
+                {
+                    intensity: "2",
+                    name: "Abdução e Adução Quadril Isometria",
+                    description: "Em pé mantenha os joelhos estendidos e levante a perna para o lado seguindo a linha do quadril segure no ponto máximo por 3s e controle o movimento de volta para a posição inicial, realize 3 séries de 8 repetições com cada perna. ",
+                    videoUrl: "https://www.youtube.com/embed/5-DiDlyILrM"
+                }, 
+                {
+                    intensity: "3",
+                    name: "Circundação Quadril",
+                    description: "Em pé dobre um dos seus joelhos e faça o movimento de Circundação, fazendo o movimento de trás para frente, realize 3 séries de 12 repetições com cada perna.",
+                    videoUrl: "https://www.youtube.com/embed/QBQ9VcoXQf4"
+                },     
+                {
+                    intensity: "3",
+                    name: "Elevação Pélvica",
+                    description: "Deitado de barriga para cima, com as pernas flexionadas e os apoiados no chão. Os braços ficam nas laterais do tronco, com a palma da mão voltada para o chão e você vai elevar o seu quadril para cima contraindo abdome e glúteos, controle o movimento de volta para a posição inicial, realize 3 séries de 12 repetições com cada perna.",
+                    videoUrl: "https://www.youtube.com/embed/iJas7RlPRXY"
+                }     
+                
+            ]
+        },
+        {
+            name: "Joelho",
+            exercicios:[
+                {
+                    intensity: "1",
+                    name: "Extensão e flexão de joelho",
+                    description: "Para realizarmos a extensão e flexão do joelho ficaremos sentados em uma cadeira e apoiar uma das pernas com a mão, e então esticar a perna até o final e segurar durante 2 segundos e então voltar à posição inicial controlando a descida da perna. 3 Séries 6 Reps",
+                    videoUrl: "https://www.youtube.com/embed/M9m71Jf-McA"
+                },
+                {
+                    intensity: "2",
+                    name: "Agachamento ",
+                    description: "Para realizarmos o agachamento mantemos os pés na linha dos ombros, e então baixaremos o quadril para trás e para baixo como se estivesse sentando em uma cadeira, lembrando sempre de manter os joelhos alinhados com os tornozelos, e depois voltaremos à posição inicial. 3 Séries 10 Reps",
+                    videoUrl: "https://www.youtube.com/embed/0jfmtW0CIIg" 
+                    
+                },
+                {
+                    intensity: "2",
+                    name: "Afundo",
+                    description: "Para realizarmos o afundo, damos um passo à frente com uma perna, abaixamos o corpo até que ambos os joelhos estejam dobrados em um ângulo de 90 graus, mantendo o joelho de trás a poucos centímetros do chão, e depois retornaremos à posição inicial. 3 Séries 10 Reps",
+                    videoUrl: "https://www.youtube.com/embed/Mv68XuczYuA"
+                },
+                {
+                    intensity: "3",
+                    name: "Agachamento",
+                    description: "Para realizarmos o agachamento mantemos os pés na linha dos ombros, e então baixaremos o quadril para trás e para baixo como se estivesse sentando em uma cadeira, lembrando sempre de manter os joelhos alinhados com os tornozelos, e depois voltaremos à posição inicial. 3 Séries 10 Reps",
+                    videoUrl: "https://www.youtube.com/embed/0jfmtW0CIIg"
+                },
+                {
+                    intensity: "3",
+                    name: "Agachamento Sumo",
+                    description: "Para o agachamento sumo, posicionaremos os pés numa linha mais larga que a dos ombros e a ponta do dos pés ligeiramente virados para fora, depois agachamos como no agachamento tradicional e retornaremos à posição inicial. 3 Séries 10 Reps",
+                    videoUrl: "https://www.youtube.com/embed/ORt3Hx54N-U"
+                },
+                {
+                    intensity: "3",
+                    name: "Afundo",
+                    description: "Para realizarmos o afundo, damos um passo à frente com uma perna, abaixamos o corpo até que ambos os joelhos estejam dobrados em um ângulo de 90 graus, mantendo o joelho de trás a poucos centímetros do chão, e depois retornaremos à posição inicial. 3 Séries 12 Reps",
+                    videoUrl: "https://www.youtube.com/embed/Mv68XuczYuA"
+                },
+    
+            ]
+        },
+        {
+            name: "Tornozelo",
+            exercicios:[
+                {
+                    intensity: "1",
+                    name: "Dorsi e Planti. Distribuindo com os dos pés",
+                    description: "Para esse exercício ficaremos em pé e ficaremos na ponta do pé com ambos os pés, ficar no pico máximo por 2s e descer, na descida antes de encostarmos os calcanhares no chão voltamos a ficar nas pontas do pé. 3 Séries 10 Reps.",
+                    videoUrl: "https://www.youtube.com/embed/FOHnG-qjf8M"
+                },
+                {
+                    intensity: "2",
+                    name: "Dorsi e Planti. Distribuindo com os dois pés em desnível",
+                    description: "Para esse exercício ficaremos em pé e ficaremos na ponta do pé com um dos os pés, ficar no pico máximo por 2s e descer, na descida antes de encostarmos o calcanhar no chão voltamos a ficar nas pontas do pé. 3 Séries 8 Reps cada pé.",
+                    videoUrl: "https://www.youtube.com/embed/3drK_ykPuSM"
+                },
+                {
+                    intensity: "3",
+                    name: "Dorsi e Planti. Uni-Podal",
+                    description: "Para esse exercício ficaremos em pé em um nível acima do piso (como por exemplo no vídeo) e ficaremos na ponta do pé com ambos os pés, ficar no pico máximo por 2s e descer, na descida vamos descer até sentirmos alongar a panturrilha e voltamos a ficar nas pontas do pé. 3 Séries 10 Reps.",
+                    videoUrl: "https://www.youtube.com/embed/OmfENadhPf0"
+                }
+            ]
+        }

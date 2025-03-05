@@ -13,7 +13,7 @@ import { FlowersComponent } from "../../flowers/flowers.component";
 @Component({
   selector: 'app-form-intensidade',
   standalone: true,
-  imports: [HttpClientModule, CommonModule, FlowersComponent],
+  imports: [HttpClientModule, CommonModule],
   templateUrl: './form-intensidade.component.html',
   styleUrls: ['./form-intensidade.component.scss'],
 })
@@ -97,6 +97,6 @@ export class FormIntensidadeComponent implements OnInit {
   }
 
   voltar(){
-    this.router.navigate(['/login/userinfo']);
+    this.router.navigate(['/form']);
   }
 }

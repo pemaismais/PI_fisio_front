@@ -27,11 +27,13 @@
           <h6 class="text-uppercase fw-bold mb-4">
             <i class="fas fa-link me-1"></i>Links úteis
           </h6>
-          <p>
-            <a [routerLink]="['/home']" class="text-reset">Home</a>
-          </p>
+          @if (authService.hasPermission('ADMIN')) {
           <p>
             <a [routerLink]="['/admin']" class="text-reset">Admin</a>
+          </p>
+        }
+          <p>
+            <a [routerLink]="['/home']" class="text-reset">Home</a>
           </p>
           <p>
             <a  [routerLink]="['/result']" class="text-reset">Resultado</a>
