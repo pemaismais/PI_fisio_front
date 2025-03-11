@@ -1,0 +1,46 @@
+footer {
+  background: #979187;
+  color: white;
+}
+li,
+a {
+  list-style-type: none;
+  color: white;
+}
+
+.footer-container {
+  display: flex;
+  padding: 1.5rem;
+  align-items: center;
+  @media (max-width: 960px) {
+    flex-direction: column;
+    
+  }
+
+  ul {
+    margin: 0 0 0 2rem;
+    display: flex;
+    padding: 0;
+    justify-content: space-between;
+    min-width: 20rem;
+    li {
+    }
+  }
+
+  .logo {
+    width: fit-content;
+    font-weight: 900;
+    font-size: 1.6rem;
+    text-align: center;
+    letter-spacing: -0.048rem;
+    line-height: 0.9em;
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  }
+  .copy {
+    margin-left: auto;
+    font-size: 15px;
+    @media (max-width: 960px) {
+        margin-left: 0;
+    }
+  }
+}

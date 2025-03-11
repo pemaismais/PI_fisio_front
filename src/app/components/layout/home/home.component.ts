@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FlowersComponent } from "../../flowers/flowers.component";
-
+import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FlowersComponent],
+  imports: [MdbCollapseModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
