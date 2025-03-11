@@ -1,55 +1,11 @@
-<!-- <footer class="text-center text-lg-start bg-light text-muted">
-  <section
-    class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
-  >
- </section>
-
-  <section class="">
-    <div class="container text-center text-md-start mt-5">
-      <div class="row mt-3">
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-          <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>Sobre o projeto
-          </h6>
-          <p>
-            O presente estudo tem como objetivo avaliar a usabilidade do site para a apresentação do protocolo desenvolvido de forma individualizada, qualquer dúvida em relação aos exercícios, suas finalidades ou execução, por favor entrar em contato com os acadêmicos.
-          </p>
-        </div>
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4"> -->
-<!-- <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-link me-1"></i>Links úteis
-          </h6>
-          @if (authService.hasPermission('ADMIN')) {
-          <p>
-            <a [routerLink]="['/admin']" class="text-reset">Admin</a>
-          </p>
-        }
-          <p>
-            <a [routerLink]="['/home']" class="text-reset">Home</a>
-          </p>
-          <p>
-            <a  [routerLink]="['/result']" class="text-reset">Resultado</a>
-          </p>
-        </div>
-  
-      </div>
-    </div>
-  </section>
-
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2021 Copyright:
-    <a class="text-reset fw-bold">Uniamerica</a>
-  </div>
-</footer> -->
-
 <footer>
   <div class="footer-container">
     <div class="logo">PROJETO<br />LER & DORT</div>
     <ul class="">
-      <li><a href="">Inicio</a></li>
-      <li><a href="">Sobre nós</a></li>
-      <li><a href="">Benefícios</a></li>
-      <li><a href="">Sobre nós</a></li>
+      <li><a routerLink="/">Inicio</a></li>
+      <li><a routerLink="home" fragment="benefits">Benefícios</a></li>
+      <li><a routerLink="/" fragment="usage">Como funciona</a></li>
+      <li><a routerLink="home" fragment="about">Sobre nós</a></li>
 
       @if (authService.hasPermission('ADMIN')) {
       <li><a href="">Admin</a></li>

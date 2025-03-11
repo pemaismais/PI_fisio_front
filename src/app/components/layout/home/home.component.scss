@@ -1,6 +1,6 @@
 // ** Cores
-$cor-bege-1: #E2DCD1;
-$cor-bege-2: #EAE4DA;
+$cor-bege-1: #e2dcd1;
+$cor-bege-2: #eae4da;
 $cor-bege-3: #faf3e0;
 
 $cor-verde-1: #106671;
@@ -48,6 +48,23 @@ $cor-marrom-1: #4f3527d6;
 .navbar {
   background-color: $cor-bege-2;
   box-shadow: none;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    line-height: 1;
+    cursor: pointer;
+    background: linear-gradient(0deg, $cor-marrom-1, $cor-marrom-1) no-repeat right
+      bottom / 0 var(--bg-h);
+    transition: background-size 350ms;
+    --bg-h: 100%;
+    padding-bottom: 2px;
+    --bg-h: 2px;    
+  }
+  a:where(:hover, :focus-visible) {
+    background-size: 100% var(--bg-h);
+    background-position-x: left;
+  }
 }
 .nav {
   &-link {
@@ -59,6 +76,11 @@ $cor-marrom-1: #4f3527d6;
     margin: auto;
     max-width: 1250px;
     flex-wrap: wrap;
+  }
+  a {
+    color: #18272f;
+    position: relative;
+    text-decoration: none;
   }
 }
 
@@ -98,9 +120,8 @@ $cor-marrom-1: #4f3527d6;
   }
 }
 
-
 // ** Seção de Benefícios **
-.benefits{
+.benefits {
   min-height: 70vh;
   background: $cor-verde-3;
   color: white;
@@ -220,7 +241,6 @@ $cor-marrom-1: #4f3527d6;
   border-radius: 50%;
 }
 
-
 // ** secao sobre **
 .about {
   background: $cor-bege-2;
@@ -228,8 +248,7 @@ $cor-marrom-1: #4f3527d6;
   min-height: 60vh;
   overflow: hidden;
 
-  
-  &-content{
+  &-content {
     width: fit-content;
   }
   &-container {
@@ -247,7 +266,6 @@ $cor-marrom-1: #4f3527d6;
       max-width: 39rem;
       font-weight: 600;
     }
-
   }
 }
 

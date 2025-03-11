@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/layout/home/home.component';
 import { FormComponent } from './components/layout/form/form.component';
 import { ResultComponent } from './components/layout/result/result.component';
@@ -12,6 +12,7 @@ import { UserInfoLoginComponent } from './components/login/user-info-login/user-
 import { MainLoginComponent } from './components/login/main-login/main-login.component';
 import { LoginGoogleComponent } from './components/login/login-google/login-google.component';
 import { ModalComponent } from './modal/modal.component';
+import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
   {
@@ -20,16 +21,21 @@ export const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'form', component: FormComponent },
-      { path: 'result', component: ResultComponent , children:[
-        { path: 'modal', component: ModalComponent},
-      ]},
-     
+      {
+        path: 'result',
+        component: ResultComponent,
+        children: [{ path: 'modal', component: ModalComponent }],
+      },
+
       { path: 'form-intensidade', component: FormIntensidadeComponent },
-      { path: 'login', component: MainLoginComponent, children:
-        [
+      {
+        path: 'login',
+        component: MainLoginComponent,
+        children: [
           { path: '', component: LoginGoogleComponent },
           { path: 'userinfo', component: UserInfoLoginComponent },
-        ]},
+        ],
+      },
     ],
   },
   {

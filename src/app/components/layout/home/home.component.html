@@ -4,10 +4,10 @@
   <div class="d-flex justify-content-between w-100 nav-container">
     <!-- Navbar brand -->
     <div class="col container-fluid">
-      <a class="navbar-brand" href="#">
+      <span class="navbar-brand" href="#">
         <img src="assets/logo-nova.png" alt="" class="logo-img" />
         <div class="logo-text">PROJETO<br />LER & DORT</div>
-      </a>
+      </span>
     </div>
 
     <!-- Toggle button -->
@@ -33,19 +33,18 @@
       <!-- Left links -->
       <ul class="navbar-nav mb-2 mb-lg-0" style="text-align: center">
         <li class="nav-item">
-          <a class="nav-link" href="#">Sobre nós</a>
+          <a class="nav-link" (click)="scrollToSection(benefits)">Benefícios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Benefícios</a>
+          <a class="nav-link" (click)="scrollToSection(usage)">Como funciona</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Como Funciona</a>
+          <a class="nav-link" (click)="scrollToSection(about)">Sobre nós</a>
         </li>
-        <li class="nav-item"></li>
       </ul>
       <!-- Left links -->
       <div class="d-flex justify-content-center">
-        <button type="button" class="mt-2 mt-md-0 button-start">
+        <button routerLink="login" type="button" class="mt-2 mt-md-0 button-start">
           COMEÇAR AGORA!
         </button>
       </div>
@@ -66,7 +65,7 @@
         sistema, desenvolvido em parceria com fisioterapeutas, recomenda
         exercícios personalizados para você.
       </span>
-      <button type="button" class="mt-2 mt-md-0 button-start">
+      <button routerLink="login"  type="button" class="mt-2 mt-md-0 button-start">
         COMEÇAR AGORA
         <i class="fa-solid fa-arrow-right ms-2"></i>
       </button>
@@ -76,7 +75,7 @@
     </div>
   </section>
 
-  <section class="benefits">
+  <section #benefits id="benefits" class="benefits">
     <div class="benefits-container">
       <div class="pt-4 pb-5">
         <h1 class="title">Por que usar nosso sistema?</h1>
@@ -115,7 +114,7 @@
     </div>
   </section>
 
-  <section class="usage">
+  <section #usage class="usage">
     <div class="usage-container pt-5 pb-3 px-3">
       <h1 class="title p-1">Como começar?</h1>
       <ul class="text-start fs-5 bar">
@@ -127,7 +126,7 @@
     </div>
   </section>
 
-  <section class="about py-5 px-3">
+  <section #about class="about py-5 px-3">
     <div class="about-container ">
       <div class="about-img-container">
       <img src="assets/img/teacher_writing.jpg" class="" alt="" />
