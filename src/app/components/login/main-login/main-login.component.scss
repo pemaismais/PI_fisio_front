@@ -1,3 +1,7 @@
+$cor-verde-1: #106671;
+
+$cor-bege-3: #faf3e0;
+
 .main-container{
     background-image: url(../../../../assets/img/background.png);
     background-size: cover;
@@ -9,13 +13,33 @@
 
 .main-card{
     background-color: #e2dcd1;
-    height: fit-content;
-    width: fit-content;
-    overflow: hidden;
+    // height: fit-content;
+    // width: fit-content;
+    // overflow: hidden;
 }
-.logo{
-    width: 17rem;
-    height: 13rem;
-    align-self: center;
+// .logo{
+//     width: 17rem;
+//     height: 13rem;
+//     align-self: center;
+//   }
+  .logo {
+    &-text {
+      color: $cor-verde-1;
+      font-weight: 900;
+      font-size: 1.6rem;
+      text-align: center;
+      letter-spacing: -0.048rem;
+      line-height: 0.9em;
+      font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    }
+    &-img {
+      height: 5rem;
+    }
   }
-  
+  .card-container{
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-height: 45rem;
+  }
