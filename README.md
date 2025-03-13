@@ -84,3 +84,5 @@ A autenticação será feita utilizando a conta Google do usuário. Para configu
 ## Contato
 
 Contribuições são bem-vindas! Se você tiver sugestões de melhorias ou correções, fique à vontade para abrir uma **issue** ou enviar um **pull request**.
+---
+## [Back-end desenvolvido em Java](https://github.com/pemaismais/Projeto_LerDort_backend)
