@@ -1,3 +1,13 @@
+
+@import "src/app/app.component.scss";
+
+
+.title {
+  font-weight: 900;
+  font-size: 30px;
+  color: $cor-marrom-1;
+}
+
 .btn-select {
   border-radius: 20px;
   font-size: 18px;
@@ -15,7 +25,7 @@
   animation-duration: 2s;
 }
 .body-form {
-  background-image: url(../../../../assets/image.png);
+  background-image: url(../../../../../assets/image.png);
   background-size: cover; /* Faz a imagem cobrir toda a área */
   background-repeat: no-repeat; /* Evita que a imagem se repita */
   background-attachment: fixed; /* Faz com que a imagem fique fixa */
@@ -41,9 +51,17 @@
     height: auto;
   }
 
- 
-
   .logo{
     cursor: pointer;
   }
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+}
+.main-container{
+  padding-top: 47px;
+  gap: 3rem;
+  max-height: 50rem;
 }

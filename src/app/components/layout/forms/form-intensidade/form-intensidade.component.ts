@@ -1,14 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { SelectionService } from '../../../services/selection.service';
-import { ExerciseService } from '../../../services/exercise.service';
+import { SelectionService } from '../../../../services/selection.service';
+import { ExerciseService } from '../../../../services/exercise.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
-import { JointIntensity, User } from '../../../models/user';
-import { UserService } from '../../../services/user.service';
-import { Intensity, Joint } from '../../../models/exercise';
-import { FlowersComponent } from "../../flowers/flowers.component";
+import { JointIntensity, User } from '../../../../models/user';
+import { UserService } from '../../../../services/user.service';
+import { Intensity, Joint } from '../../../../models/exercise';
+import { FlowersComponent } from "../../../flowers/flowers.component";
 
 @Component({
   selector: 'app-form-intensidade',

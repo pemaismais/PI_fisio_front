@@ -2,15 +2,16 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { SelectionService } from '../../../services/selection.service';
-import { FlowersComponent } from "../../flowers/flowers.component";
+import { SelectionService } from '../../../../services/selection.service';
+import { FlowersComponent } from "../../../flowers/flowers.component";
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LogoComponent } from '../../../logo/logo.component';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [MatButtonModule, CommonModule, FlowersComponent],
+  imports: [MatButtonModule, CommonModule, FlowersComponent, LogoComponent],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
@@ -55,7 +56,7 @@ export class FormComponent {
     } else {
       console.log('Selected Regions:', selectedRegions); // Debug
       this.selectionService.setSelectedRegions(selectedRegions);
-      this.router.navigate(['/form-intensidade']);
+      this.router.navigate(['/form/pain']);
     }
   }
 

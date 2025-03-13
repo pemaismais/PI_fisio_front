@@ -2,13 +2,13 @@ import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { User } from '../../../models/user';
+import { User } from '../../../../models/user';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { formatDate, NgClass } from '@angular/common';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-user-info-login',

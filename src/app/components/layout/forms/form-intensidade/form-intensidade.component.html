@@ -2,18 +2,21 @@
 rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 />
-<div class="body-form">
+<!-- <div class="body-form">
   <div class="container-fluid w-100 h-100">
     <div class="row w-100 h-100">
       <div class="col-1 col-md-2 col-xl-3"></div>
       <div class="col-10 col-md-8 col-xl-6">
         <div
           class="d-flex flex-column align-items-center justify-content-center text-center gap-3 mt-5 "
-        >
-          <h2 class="mb-5 text-black">
+        > -->
+        <div class="h-100 d-flex align-items-center justify-content-center flex-column text-center main-container">
+
+          <h2 class="mb-5 title">
             Selecione a intensidade para cada região que sentir dor:
           </h2>
 
+          <div class="options-container">
           @for (region of selectedRegions; track $index) {
           <div
             class="d-flex flex-column text-start gap-1 rounded p-3 mb-3 
@@ -71,6 +74,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
             </div>
           </div>
         }
+      </div>
           <div class="row d-flex justify-content-center gap-3 ">
           <!-- Botão de Enviar -->
           <button
@@ -90,8 +94,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
           </button>
         </div>
         </div>
-      </div>
+      <!-- </div>
       <div class="col-1 col-md-2 col-xl-3"></div>
     </div>
   </div>
-</div>
+</div> -->

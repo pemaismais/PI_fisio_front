@@ -7,12 +7,14 @@ import {
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { AuthService } from '../../../services/auth.service';
-import { AuthDTO } from '../../../models/auth-dto';
-import { UserService } from '../../../services/user.service';
-import { SelectionService } from '../../../services/selection.service';
+import { AuthService } from '../../../../services/auth.service';
+import { AuthDTO } from '../../../../models/auth-dto';
+import { UserService } from '../../../../services/user.service';
+import { SelectionService } from '../../../../services/selection.service';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { ModalComponent } from '../../../modal/modal.component';
+import { ModalComponent } from '../../../../modal/modal.component';
+import { GoogleSigninComponent } from "../../../google-signin/google-signin.component";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login-google',
@@ -22,7 +24,9 @@ import { ModalComponent } from '../../../modal/modal.component';
     SocialLoginModule,
     GoogleSigninButtonModule,
     MdbFormsModule,
-  ],
+    GoogleSigninButtonModule,
+    GoogleSigninComponent
+],
   providers: [MdbModalService], // Adiciona o serviço aqui
   encapsulation: ViewEncapsulation.None,
   templateUrl: './login-google.component.html',
@@ -31,6 +35,7 @@ import { ModalComponent } from '../../../modal/modal.component';
 export class LoginGoogleComponent implements OnInit {
   userName: string = '';
   modalRef: MdbModalRef<ModalComponent> | null = null;
+  authSubscription!: Subscription;
 
   constructor(
     private selectionService: SelectionService,
@@ -45,6 +50,14 @@ export class LoginGoogleComponent implements OnInit {
     this.modalRef = this.modalService.open(ModalComponent);
   }
 
+
+  googleSignin(googleWrapper: any) {
+    googleWrapper.click();
+  }
+  // ngOnDestroy(): void {
+  //   this.authSubscription.unsubscribe();
+  // }
+  //
   ngOnInit() {
     this.socialAuth.authState.subscribe((res: any) => {
       const userName = res.name;

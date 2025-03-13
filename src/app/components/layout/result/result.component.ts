@@ -12,11 +12,12 @@ import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user.service';
 import { ExerciseService } from '../../../services/exercise.service';
 import { forkJoin, Observable, throwError } from 'rxjs';
+import { LogoComponent } from "../../logo/logo.component";
 
 @Component({
   selector: 'app-result',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, SafeUrlPipe, HeaderComponent],
+  imports: [CommonModule, MatTabsModule, SafeUrlPipe, HeaderComponent, LogoComponent],
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss'],
 })

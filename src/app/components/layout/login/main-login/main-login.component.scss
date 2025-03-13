@@ -1,9 +1,8 @@
-$cor-verde-1: #106671;
+@import "src/app/app.component.scss";
 
-$cor-bege-3: #faf3e0;
 
 .main-container{
-    background-image: url(../../../../assets/img/background.png);
+    background-image: url("../../../../../assets/img/background.png");
     background-size: cover;
     min-height: 100vh;
 }
@@ -13,15 +12,8 @@ $cor-bege-3: #faf3e0;
 
 .main-card{
     background-color: #e2dcd1;
-    // height: fit-content;
-    // width: fit-content;
-    // overflow: hidden;
+
 }
-// .logo{
-//     width: 17rem;
-//     height: 13rem;
-//     align-self: center;
-//   }
   .logo {
     &-text {
       color: $cor-verde-1;
@@ -37,7 +29,7 @@ $cor-bege-3: #faf3e0;
     }
   }
   .card-container{
-    height: 70vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
