@@ -1,10 +1,7 @@
-
-
-
 <div align="center">
   <img src="https://github.com/user-attachments/assets/996821ed-eed1-4338-a19e-4cff0b632282" alt="Imagem do Projeto" width="300">
 </div>
-
+<br>
 O **PROJETO LER & DORT** tem como objetivo investigar as dores e desconfortos presentes entre professores do Ensino Médio, com foco em Lesões por Esforços Repetitivos (LER) e Distúrbios Osteomusculares Relacionados ao Trabalho (DORT). A solução proposta visa melhorar a saúde e o bem-estar dos professores por meio de recomendações personalizadas de exercícios para aliviar as dores.
 
 Este é o frontend do sistema, desenvolvido com **Angular 17**, **Bootstrap** e **Angular Material**. O sistema comunica-se com a API backend para fornecer resultados e vídeos de exercícios personalizados com base nas regiões de dor e na intensidade informadas pelo usuário.
