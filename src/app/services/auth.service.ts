@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
-import { environment } from '../environments/enviroment';
+import { environment } from '../../environments/environment';
 import { AuthDTO } from '../models/auth-dto';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { User } from '../models/user';
@@ -10,14 +10,11 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = environment.BACKEND_URL;
+  private apiUrl = `${environment.BACKEND_URL}/api/auth`;
   private readonly access_token = 'access_token';
   private readonly refresh_token = 'refresh_token';
 
-  constructor(private http: HttpClient) { 
-
-
-  }
+  constructor(private http: HttpClient) {}
 
   public getAccessToken(){
     return localStorage.getItem(this.access_token);
@@ -38,6 +35,9 @@ export class AuthService {
     localStorage.setItem(this.refresh_token, authDTO.refreshToken);
   }
 
+  public isLoggedIn(){
+    return this.getAccessToken() != null;
+  }
   /**
    * Social login for Google specifically
    * @param id_token Token gotten from first step social google auth
@@ -49,7 +49,7 @@ export class AuthService {
     const payload = {
       "idToken": idToken
     }
-    return this.http.post<AuthDTO>(`${this.apiUrl}/auth/login`,payload, {responseType: 'json'});
+    return this.http.post<AuthDTO>(`${this.apiUrl}/login`,payload, {responseType: 'json'});
   }
 
   refresh(refreshToken: string): Observable<AuthDTO>{{}
@@ -57,7 +57,7 @@ export class AuthService {
   const payload = {
     "refreshToken": token
   }
-  return this.http.post<AuthDTO>(`${this.apiUrl}/auth/refreshToken`,payload, {responseType: 'json'});
+  return this.http.post<AuthDTO>(`${this.apiUrl}/refreshToken`,payload, {responseType: 'json'});
 
   }
 
@@ -74,6 +74,16 @@ export class AuthService {
     }else
     return ""
   }
+
+  public getProfilePicture(): string {
+    let user = this.jwtDecode(this.getAccessToken() || '') as { picture?: string };
+    console.log(user.picture)
+    if(user.picture != null)
+      return user.picture
+    else
+      return ""
+  }
+  
 
   hasPermission(role: String){
     let user = this.jwtDecode(this.getAccessToken() || '') as User;

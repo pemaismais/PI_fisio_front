@@ -1,0 +1,18 @@
+
+@import "src/app/app.component.scss";
+
+
+.logo {
+    &-text {
+      color: $cor-verde-1;
+      font-weight: 900;
+      font-size: 1.6rem;
+      text-align: center;
+      letter-spacing: -0.048rem;
+      line-height: 0.9em;
+      font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    }
+    &-img {
+      height: 5rem;
+    }
+  }

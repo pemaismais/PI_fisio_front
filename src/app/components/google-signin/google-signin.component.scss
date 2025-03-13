@@ -1,0 +1,34 @@
+svg{
+    height: 18px;
+  margin-right: 8px;
+  min-width: 18px;
+  width: 18px;
+}
+span{
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: Roboto, Arial, Helvetica, sans-serif !important; 
+}
+
+button{
+  min-height: 3rem;
+  height: auto;
+
+  width: 100%;
+  max-width: 320px;
+  
+  display: flex;
+  justify-content: center;
+
+
+  align-items: center;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.2549019608);
+  background-color: white;
+
+}
+button:hover{
+  border-color: #00000065 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}

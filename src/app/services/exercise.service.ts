@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../environments/enviroment';
+import { environment } from '../../environments/environment';
 import { Exercise, Intensity, Joint } from '../models/exercise';
 import { Observable } from 'rxjs';
 import { ExercisePage } from '../models/exercise-page';

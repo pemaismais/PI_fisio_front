@@ -1,18 +1,23 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { FlowersComponent } from "../../flowers/flowers.component";
-
+import { Component, ElementRef, inject, } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
+import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
+import { AvatarComponent } from "../../avatar/avatar.component";
+import { AuthService } from '../../../services/auth.service';
+import { LogoComponent } from "../../logo/logo.component";
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FlowersComponent],
+  imports: [MdbCollapseModule, RouterLink, AvatarComponent, LogoComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  constructor(private router: Router) {}
-  description = "Métodos fisioterapêuticos para alívio e prevenção de dores em professores do Ensino Fundamental"
-  onStart() {
-    this.router.navigate(['/login']);
+  constructor() {}
+  authService = inject(AuthService);
+
+  scrollToSection(section: HTMLElement){
+    section.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
+
 }

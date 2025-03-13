@@ -2,22 +2,25 @@
   <div class="container-fluid h-100 background">
     <div class="row align-items-center">
       <!-- Logo -->
-      <div class="col-12 col-md-3 text-center text-md-start mb-3 mb-md-0">
-        <div class="logo">
-          <img
-            (click)="message()"
-            src="../../../../assets/img/logo.png"
-            class="w-50 w-md-75 my-0 logo"
-            alt=""
-          />
-        </div>
+      <div class="col-12 col-md-3 text-center text-md-start mb-3 mb-md-0
+      d-flex justify-content-center align-items-center flex-wrap gap-2">
+          <app-logo></app-logo>
+          <div class="d-md-none">
+            <app-avatar></app-avatar>
+          </div>
+
+
       </div>
       <!-- Título e Subtítulo -->
       <div class="col-12 col-md-6 text-center">
         <h2 class="titulo-header mb-2">Conheça seu Corpo</h2>
         <p class="p-header m-0">Rotinas de Treino Ajustadas ao Seu Corpo</p>
       </div>
-      <div class="col-md-3 d-none d-md-block"></div>
+      <div class="col-md-3 d-none d-md-block">
+        <div style="width: fit-content;">
+          <app-avatar></app-avatar>
+        </div>
+      </div>
     </div>
   </div>
 </header>
