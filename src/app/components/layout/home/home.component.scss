@@ -60,10 +60,15 @@
   }
 }
 .nav {
+  &-item{
+    display: flex;
+    justify-content: center;
+  }
   &-link {
     color: $cor-verde-2;
     font-weight: bold;
     font-size: 20px;
+    width: fit-content;
   }
   &-container {
     margin: auto;

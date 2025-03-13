@@ -54,10 +54,7 @@ export class LoginGoogleComponent implements OnInit {
   googleSignin(googleWrapper: any) {
     googleWrapper.click();
   }
-  // ngOnDestroy(): void {
-  //   this.authSubscription.unsubscribe();
-  // }
-  //
+
   ngOnInit() {
     this.socialAuth.authState.subscribe((res: any) => {
       const userName = res.name;

@@ -35,6 +35,9 @@ export class AuthService {
     localStorage.setItem(this.refresh_token, authDTO.refreshToken);
   }
 
+  public isLoggedIn(){
+    return this.getAccessToken() != null;
+  }
   /**
    * Social login for Google specifically
    * @param id_token Token gotten from first step social google auth
@@ -74,7 +77,7 @@ export class AuthService {
 
   public getProfilePicture(): string {
     let user = this.jwtDecode(this.getAccessToken() || '') as { picture?: string };
-    // console.log(user.picture)
+    console.log(user.picture)
     if(user.picture != null)
       return user.picture
     else

@@ -5,10 +5,12 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FooterComponent } from '../../footer/footer.component';
 import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
 import { AuthService } from '../../../services/auth.service';
+import { AvatarComponent } from "../../avatar/avatar.component";
+import { LogoComponent } from "../../logo/logo.component";
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [MdbCollapseModule, AppComponent, RouterOutlet, FooterComponent, MdbDropdownModule, RouterLink],
+  imports: [MdbCollapseModule, AppComponent, RouterOutlet, FooterComponent, MdbDropdownModule, RouterLink, AvatarComponent, LogoComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })

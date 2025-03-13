@@ -13,11 +13,12 @@ import { UserService } from '../../../services/user.service';
 import { ExerciseService } from '../../../services/exercise.service';
 import { forkJoin, Observable, throwError } from 'rxjs';
 import { LogoComponent } from "../../logo/logo.component";
+import { AvatarComponent } from "../../avatar/avatar.component";
 
 @Component({
   selector: 'app-result',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, SafeUrlPipe, HeaderComponent, LogoComponent],
+  imports: [CommonModule, MatTabsModule, SafeUrlPipe, HeaderComponent, LogoComponent, AvatarComponent],
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss'],
 })
@@ -81,20 +82,21 @@ export class ResultComponent implements OnInit {
 
   private transformToEmbedUrl(url: string): SafeResourceUrl {
     let videoId: string | undefined;
-    if (url.includes('youtube.com')) {
-      //verifica se ta no dominio do you
-      videoId = url.split('v=')[1]?.split('&')[0]; //se a url tiver certa ela vai extrair a partir vo v ali
-      //o split vai divir em duas partes, o 1 seleciona a parte após o v= onde o ID do video inicia
-      // o split('&')[0] serve para separar qlqr outro parametro q venha apos o ID
-    } else if (url.includes('youtu.be')) {
-      //ve o dominio
-      videoId = url.split('/').pop(); // divide a URL em segmentos usando a barra como delimitador e retorna o último segmento, que é o ID do vídeo.
+  
+    // Regex para capturar o ID do vídeo de diversos formatos de URL do YouTube
+    const regex = /(?:youtube\.com\/(?:[^\/]+\/.*|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/;
+    const match = url.match(regex);
+  
+    if (match && match[1]) {
+      videoId = match[1];
     }
+  
     if (videoId) {
-      const embedUrl = `https://www.youtube.com/embed/${videoId}`; //se extrair com sucesso ai vai pegar o ID do video  e após retorna para o angular uma URL segura
+      const embedUrl = `https://www.youtube.com/embed/${videoId}`;
       return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
     }
-    return this.sanitizer.bypassSecurityTrustResourceUrl(''); // se o video n ser encontrado vai retornar a URL vazia ^^
+  
+    return this.sanitizer.bypassSecurityTrustResourceUrl(''); // Retorna uma URL vazia se não encontrar um ID válido
   }
 
   message() {

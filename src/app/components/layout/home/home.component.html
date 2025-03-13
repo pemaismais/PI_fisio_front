@@ -3,12 +3,7 @@
   <!-- Container wrapper -->
   <div class="d-flex justify-content-between w-100 nav-container">
     <!-- Navbar brand -->
-    <div class="col container-fluid">
-      <span class="navbar-brand" href="#">
-        <img src="assets/logo-nova.png" alt="" class="logo-img" />
-        <div class="logo-text">PROJETO<br />LER & DORT</div>
-      </span>
-    </div>
+    <app-logo></app-logo>
 
     <!-- Toggle button -->
     <div class="" style="align-content: center">
@@ -25,7 +20,7 @@
 
     <!-- Collapsible wrapper -->
     <div
-      class="collapse navbar-collapse pt-2 d-md-none d-md-flex justify-content-between"
+      class="collapse navbar-collapse pt-2 d-md-none d-md-flex justify-content-between  ps-2"
       id="navbarSupportedContent"
       mdbCollapse
       #basicNavbar="mdbCollapse"
@@ -44,16 +39,24 @@
       </ul>
       <!-- Left links -->
       <div class="d-flex justify-content-center">
-        <button routerLink="login" type="button" class="mt-2 mt-md-0 button-start">
-          COMEÇAR AGORA!
-        </button>
+        @if(this.authService.isLoggedIn()){
+          <app-avatar></app-avatar>
+        }@else{
+          <button routerLink="login" type="button" class="mt-2 mt-md-0 button-start">
+            COMEÇAR AGORA!
+          </button>
+        }
+    
       </div>
+
     </div>
 
     <!-- Collapsible wrapper -->
   </div>
   <!-- Container wrapper -->
 </nav>
+<!-- Navbar -->
+
 <div class="container-fluid">
   <section class="hero d-flex flex-column pt-5 pb-5 align-items-center flex-lg-row">
     <div class="d-flex flex-column hero-container align-items-md-start">
