@@ -9,7 +9,7 @@ import { LogoComponent } from '../../../common/logo/logo.component';
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [MatButtonModule, CommonModule, LogoComponent],
+  imports: [MatButtonModule, CommonModule],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
@@ -62,7 +62,7 @@ export class FormComponent {
     this.router.navigate(['/login/userinfo']);
   }
   openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {duration: 600},);
+    this.snackBar.open(message, action, {duration: 2200},);
   }
 
   message() {

@@ -8,6 +8,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { JointIntensity, User } from '../../../../models/user';
 import { UserService } from '../../../../services/user.service';
 import { Intensity, Joint } from '../../../../models/exercise';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-form-intensidade',
@@ -40,13 +41,15 @@ export class FormIntensidadeComponent implements OnInit {
   constructor(
     private selectionService: SelectionService,
     private exerciseService: ExerciseService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar 
+    
   ) {}
 
   ngOnInit() {
-    if(this.selectionService.getSelectedRegions().length > 0){
+    if (this.selectionService.getSelectedRegions().length > 0) {
       this.selectedRegions = this.selectionService.getSelectedRegions();
-    }else{
+    } else {
       this.router.navigate(['']);
     }
   }
@@ -59,14 +62,62 @@ export class FormIntensidadeComponent implements OnInit {
     }
   }
 
+  // submitSelection() {
+  //   // const requests: Observable<any>[] = [];
+
+  //   Object.entries(this.selectedCheckbox).forEach(([region, intensity]) => {
+  //     const translatedRegion = this.regionMap[region];
+  //     const translatedIntensity = this.intensityMap[intensity];
+  //     const formattedRegion = translatedRegion.charAt(0) + translatedRegion.slice(1).toLowerCase();
+  //     const formattedIntensity = translatedIntensity.charAt(0) + translatedIntensity.slice(1).toLowerCase();
+
+  //     const jointIntensity = new JointIntensity(
+  //       Joint[formattedRegion as keyof typeof Joint],
+  //       Intensity[formattedIntensity as keyof typeof Intensity]
+  //     );
+
+  //     this.user.jointIntensities?.push(jointIntensity);
+  //     // const exerciseRequest =
+  //     //   this.exerciseService.getExercisesByJointAndIntensity(
+  //     //     jointIntensity.joint,
+  //     //     jointIntensity.intensity
+  //     //   );
+  //     // requests.push(exerciseRequest);
+  //   });
+
+  //   // dps do mapeamento de jointIntensities, inserindo na service p/ ser usado no resultcomponent
+  //   this.selectionService.setJointIntensities(this.user.jointIntensities || []);
+
+  //   this.userService.patchUpdate(this.user).subscribe({
+  //     next: (response) => {
+  //       this.router.navigate(['/result']);
+  //     },
+  //     error: (err) => {
+  //       console.error('Error updating user:', err);
+  //     },
+  //   });
+  // }
   submitSelection() {
-    const requests: Observable<any>[] = [];
+    const allSelected = this.selectedRegions.every(
+      (region) => this.selectedCheckbox[region]
+    );
+
+    if (!allSelected) {
+      this.openSnackBar(
+        'Selecione a intensidade para todas as regiões antes de continuar.',
+        'Fechar'
+      )
+      return;
+    }
 
     Object.entries(this.selectedCheckbox).forEach(([region, intensity]) => {
       const translatedRegion = this.regionMap[region];
       const translatedIntensity = this.intensityMap[intensity];
-      const formattedRegion = translatedRegion.charAt(0) + translatedRegion.slice(1).toLowerCase();
-      const formattedIntensity = translatedIntensity.charAt(0) + translatedIntensity.slice(1).toLowerCase();
+      const formattedRegion =
+        translatedRegion.charAt(0) + translatedRegion.slice(1).toLowerCase();
+      const formattedIntensity =
+        translatedIntensity.charAt(0) +
+        translatedIntensity.slice(1).toLowerCase();
 
       const jointIntensity = new JointIntensity(
         Joint[formattedRegion as keyof typeof Joint],
@@ -74,15 +125,8 @@ export class FormIntensidadeComponent implements OnInit {
       );
 
       this.user.jointIntensities?.push(jointIntensity);
-      const exerciseRequest =
-        this.exerciseService.getExercisesByJointAndIntensity(
-          jointIntensity.joint,
-          jointIntensity.intensity
-        );
-      requests.push(exerciseRequest);
     });
 
-    // dps do mapeamento de jointIntensities, inserindo na service p/ ser usado no resultcomponent
     this.selectionService.setJointIntensities(this.user.jointIntensities || []);
 
     this.userService.patchUpdate(this.user).subscribe({
@@ -95,7 +139,10 @@ export class FormIntensidadeComponent implements OnInit {
     });
   }
 
-  voltar(){
+  voltar() {
     this.router.navigate(['/form']);
+  }
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {duration: 2200},);
   }
 }
