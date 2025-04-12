@@ -22,17 +22,17 @@
         </li>
         @if(this.authService.hasPermission('ADMIN')){
           <li>
-            <a class="dropdown-item" routerLink="admin" >Admin</a>
+            <a class="dropdown-item" routerLink="/admin" >Admin</a>
           </li>
         }
         <li>
-          <a class="dropdown-item" routerLink="result" >Resultado</a>
+          <a class="dropdown-item" routerLink="/result" >Resultado</a>
         </li>
         <li>
-          <a class="dropdown-item" routerLink="form" >Formulário</a>
+          <a class="dropdown-item" routerLink="/form" >Formulário</a>
         </li>
         <li>
-          <a class="dropdown-item" (click)="this.authService.logout()">Sair</a>
+          <a class="dropdown-item"  routerLink="/" (click)="this.authService.logout()">Sair</a>
         </li>
       </ul>
     </div>
