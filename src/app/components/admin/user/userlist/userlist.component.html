@@ -28,8 +28,11 @@
             </div>
           </div>
         </td>
-        <td>
+        <td class="d-flex justify-content-around flex-wrap">
           {{user.role}}
+          @if(!isMe(user.name|| '')){
+            <a class="change-role-button" (click)="user.id && changeRole(user)"><i class="fas fa-exchange-alt"></i></a>
+          }
         </td>
         <td >
           <div class="d-flex gap-2 align-items-center "> 

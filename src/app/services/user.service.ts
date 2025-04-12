@@ -4,9 +4,6 @@ import { environment } from '../../environments/environment';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
 import { UserPage } from '../models/user-page';
-import { JsonPipe } from '@angular/common';
-import { ExerciseFilterDTO } from '../models/exercise-filter-dto';
-import { Intensity, Joint } from '../models/exercise';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +21,10 @@ export class UserService {
 
   getInfo(): Observable<User>{
     return this.http.get<User>(`${this.api}/info`, {responseType: 'json'} );
+  }
+
+  update(user: User): Observable<User>{
+    return this.http.put<User>(`${this.api}/${user.id}`, user, {responseType: 'json'});
   }
   
   constructor() { }

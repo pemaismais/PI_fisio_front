@@ -6,7 +6,7 @@
           <h1>Lista de Usuários</h1>
           <br />
           @if (userPage) {
-          <app-userlist [users]="userPage.users"></app-userlist>
+          <app-userlist (changeRole)="changeRole($event)"  [users]="userPage.users"></app-userlist>
 
           <mat-paginator
           (page)="listAll($event)"

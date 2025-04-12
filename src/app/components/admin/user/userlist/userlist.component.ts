@@ -1,22 +1,27 @@
-import { Component, inject, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
-import { ExercisedetailsComponent } from '../../exercise/exercisedetails/exercisedetails.component';
 import { JointIntensity, User } from '../../../../models/user';
-import { Intensity, Joint } from '../../../../models/exercise';
+import { Intensity } from '../../../../models/exercise';
 import { NgClass } from '@angular/common';
-import { UserService } from '../../../../services/user.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-userlist',
   standalone: true,
-  imports: [ExercisedetailsComponent, RouterLink, MdbModalModule, NgClass],
+  imports: [ MdbModalModule, NgClass],
   templateUrl: './userlist.component.html',
   styleUrl: './userlist.component.scss',
 })
 export class UserlistComponent {
   @Input('users') users: User[] = []
+  @Output('changeRole') changeRoleEvent = new EventEmitter<User>();
+
+    changeRole(user: User){
+      this.changeRoleEvent.emit(user);
+    }
+    
+    isMe(userName: string): boolean {
+      return localStorage.getItem('userName') === userName;
+    }
 
   getBadgeClass(jointIntensity: JointIntensity): string {
     switch (jointIntensity.intensity) {

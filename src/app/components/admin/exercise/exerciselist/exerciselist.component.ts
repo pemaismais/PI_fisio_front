@@ -1,16 +1,11 @@
-import { Component, EventEmitter, inject, Input, input, Output, TemplateRef, viewChild, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Exercise, Intensity, IntensityPTBR, Joint, JointPTBR } from '../../../../models/exercise';
-import { ExercisedetailsComponent } from '../exercisedetails/exercisedetails.component';
-import { RouterLink } from '@angular/router';
-import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { ExerciseService } from '../../../../services/exercise.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-exerciselist',
   standalone: true,
-  imports: [ExercisedetailsComponent, RouterLink, MdbModalModule,],
+  imports: [MdbModalModule],
   templateUrl: './exerciselist.component.html',
   styleUrl: './exerciselist.component.scss',
 })

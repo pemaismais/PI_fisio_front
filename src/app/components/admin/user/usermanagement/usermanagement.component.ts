@@ -44,6 +44,19 @@ export class UserManagementComponent {
     })
   }
 
+  changeRole(user: User){
+    console.log(user)
+    user.role = user.role === 'ADMIN' ? 'USER' : 'ADMIN';
+    this.userService.update(user).subscribe({
+      next: value => {
+        console.log(value)
+        this.openSnackBar('User updated successfully', 'Close')
+      },
+      error: error => {
+        this.openSnackBar(error.error, 'Close')
+      }
+    })
+  }
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {});
