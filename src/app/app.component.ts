@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { environment } from '../environments/environment';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,10 @@ export class AppComponent {
   title = 'PI_fisio_front';
 
   // testando environments variables!
-  constructor(){
+  constructor(s: AuthService){
     console.log(environment.BACKEND_URL)
+    console.log (s.jwtDecode(s.getAccessToken() || '')) 
+
   }
   // -- 
 }

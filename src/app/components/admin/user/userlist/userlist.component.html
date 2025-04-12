@@ -30,7 +30,7 @@
         </td>
         <td class="d-flex justify-content-around flex-wrap">
           {{user.role}}
-          @if(!isMe(user.name|| '')){
+          @if(!isMe(user.email || '')){
             <a class="change-role-button" (click)="user.id && changeRole(user)"><i class="fas fa-exchange-alt"></i></a>
           }
         </td>

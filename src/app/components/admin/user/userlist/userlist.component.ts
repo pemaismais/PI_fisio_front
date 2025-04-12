@@ -3,6 +3,7 @@ import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { JointIntensity, User } from '../../../../models/user';
 import { Intensity } from '../../../../models/exercise';
 import { NgClass } from '@angular/common';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-userlist',
@@ -14,13 +15,14 @@ import { NgClass } from '@angular/common';
 export class UserlistComponent {
   @Input('users') users: User[] = []
   @Output('changeRole') changeRoleEvent = new EventEmitter<User>();
-
-    changeRole(user: User){
+  constructor(private authService: AuthService){}
+  changeRole(user: User){
       this.changeRoleEvent.emit(user);
     }
     
-    isMe(userName: string): boolean {
-      return localStorage.getItem('userName') === userName;
+    isMe(email: string): boolean {
+      const decoded = this.authService.jwtDecode(this.authService.getAccessToken() || '');
+      return typeof decoded === 'object' && 'username' in decoded ? decoded.username === email : false;
     }
 
   getBadgeClass(jointIntensity: JointIntensity): string {
