@@ -1,56 +1,76 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
+import { catchError, from, switchMap, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
-import { jwtDecode } from 'jwt-decode';
-import { AuthDTO } from '../models/auth-dto';
 
-export const meuhttpInterceptor: HttpInterceptorFn = (request, next) => {
+// Interceptor HTTP que adiciona o token de autenticação nas requisições
+export const httpInterceptor: HttpInterceptorFn = (request, next) => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
 
-  let authService = inject(AuthService);
-  let router = inject(Router);
+  // Ignora requisições que vão direto pro Keycloak (evita loop ou erro de CORS)
+  if (request.url.includes('/auth/realms/')) {
+    return next(request);
+  }
 
-  let token = localStorage.getItem('access_token');
+  const token = authService.getAccessToken();
+
+  // Se tiver token e não for a rota de login ou refresh, adiciona o Authorization no header
   if (
     token &&
     !request.url.includes('/auth/login') &&
-    (!request.url.includes('/auth/refreshToken') || router.url.includes('/login/userinfo'))
-){
+    !request.url.includes('/auth/refreshToken')
+  ) {
     request = request.clone({
       setHeaders: { Authorization: 'Bearer ' + token },
     });
   }
 
+  // Continua com a requisição, mas tratando possíveis erros (401, 403 etc)
   return next(request).pipe(
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
-          // tratar erro 401
+          // 401 = não autorizado, geralmente token expirado
+
           const refresh_token = authService.getRefreshToken() || '';
-          // SE der erro 401, e o refreshtoken no localstorage for valido:
-        if(authService.jwtDecode(refresh_token)){
-          authService.refresh(refresh_token).subscribe({
-              next: a  => {
-                authService.setAuthToken({accessToken: a.accessToken, refreshToken: a.refreshToken});
-                window.location.reload() 
-              },
-              error: err =>{
+
+          if (refresh_token) {
+            // Tenta renovar o token usando o refresh_token
+            return authService.refresh(refresh_token).pipe(
+              switchMap(authDTO => {
+                // Se deu certo, refaz a requisição original com o novo token
+                const updatedRequest = request.clone({
+                  setHeaders: { Authorization: 'Bearer ' + authDTO.accessToken },
+                });
+                return next(updatedRequest);
+              }),
+              catchError(refreshError => {
+                // Deu erro ao tentar renovar -> desloga e manda pro login
+                console.error('Erro ao renovar token:', refreshError);
                 authService.logout();
                 router.navigate(['/login']);
-                console.log('Error while trying to get refreshtoken by refresh method')
-              }
-            })
+                return throwError(() => refreshError);
+              })
+            );
+          } else {
+            // Se não tiver refresh_token, redireciona direto pro login
+            authService.logout();
+            router.navigate(['/login']);
           }
+
         } else if (err.status === 403) {
-          alert('403 - tratar aqui');
-		  router.navigate(['/login']);
+          // 403 = usuário não tem permissão, redireciona também
+          console.error('Acesso proibido (403)');
+          router.navigate(['/login']);
+
         } else {
+          // Outros erros HTTP
           console.error('HTTP error:', err);
         }
-		
-		
       } else {
+        // Erro não relacionado à resposta HTTP
         console.error('An error occurred:', err);
       }
 

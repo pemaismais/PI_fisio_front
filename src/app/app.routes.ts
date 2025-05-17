@@ -14,6 +14,7 @@ import { LoginGoogleComponent } from './components/auth/login/login-google/login
 import { ModalComponent } from './components/common/modal/modal.component';
 import { NgModule } from '@angular/core';
 import { MainFormComponent } from './components/pages/form/main-form/main-form.component';
+import { KeycloakLoginComponent } from './components/auth/login/keycloak-login/keycloak-login.component';
 
 export const routes: Routes = [
   {
@@ -26,11 +27,13 @@ export const routes: Routes = [
         component: ResultComponent,
         children: [{ path: 'modal', component: ModalComponent }],
       },
+     
       {
         path: 'login',
         component: MainLoginComponent,
         children: [
-          { path: '', component: LoginGoogleComponent },
+          { path: '', component: KeycloakLoginComponent }, 
+          { path: 'google', component: KeycloakLoginComponent }, 
           { path: 'userinfo', component: UserInfoLoginComponent },
         ],
       },

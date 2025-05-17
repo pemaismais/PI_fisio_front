@@ -1,6 +1,5 @@
-import { ApplicationConfig } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
-
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
@@ -16,11 +15,17 @@ import {
 } from '@abacritt/angularx-social-login';
 import { environment } from '../environments/environment';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { meuhttpInterceptor } from './services/http-interceptor.service';
+import { httpInterceptor } from './services/http-interceptor.service';
+import { KeycloakService } from './services/keycloak.service';
+import { AuthService } from './services/auth.service';
+
+
+export function initializeKeycloak(authService: AuthService) {
+  return () => authService.initKeycloak();
+}
 
 const googleLoginOptions: GoogleInitOptions = {
-  oneTapEnabled: false, // default is true
-  //  scopes: 'https://www.googleapis.com/auth/calendar.readonly'
+  oneTapEnabled: false, 
 };
 
 export const appConfig: ApplicationConfig = {
@@ -51,11 +56,15 @@ export const appConfig: ApplicationConfig = {
         },
       } as SocialAuthServiceConfig,
     },
-    provideRouter(routes),
     provideClientHydration(),
-    provideAnimations(),
-    provideHttpClient(withFetch(), withInterceptors([meuhttpInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([httpInterceptor])),
     provideAnimationsAsync(),
-    provideAnimations(),
+  
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [AuthService]
+    }
   ],
 };

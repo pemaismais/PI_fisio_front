@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import {
   GoogleSigninButtonModule,
   SocialAuthService,
@@ -26,13 +26,13 @@ import { Subscription } from 'rxjs';
     MdbFormsModule,
     GoogleSigninButtonModule,
     GoogleSigninComponent
-],
-  providers: [MdbModalService], // Adiciona o serviço aqui
+  ],
+  providers: [MdbModalService], 
   encapsulation: ViewEncapsulation.None,
   templateUrl: './login-google.component.html',
   styleUrls: ['./login-google.component.scss'],
 })
-export class LoginGoogleComponent implements OnInit {
+export class LoginGoogleComponent implements OnInit, OnDestroy {
   userName: string = '';
   modalRef: MdbModalRef<ModalComponent> | null = null;
   authSubscription!: Subscription;
@@ -48,8 +48,8 @@ export class LoginGoogleComponent implements OnInit {
 
   openModal(): void {
     this.modalRef = this.modalService.open(ModalComponent);
+    
   }
-
 
   googleSignin(googleWrapper: any) {
     googleWrapper.click();
@@ -60,33 +60,67 @@ export class LoginGoogleComponent implements OnInit {
       const userName = res.name;
       console.log('Nome do usuário que logou com o Google: ', userName);
       localStorage.setItem('userName', userName);
-
-      this.authService.login(res.idToken).subscribe({
-        next: (auth: AuthDTO) => {
-          console.log('AccessToken: ', auth.accessToken);
-          console.log('RefreshToken: ', auth.refreshToken);
-          this.authService.setAuthToken(auth);
-          this.userService.getInfo().subscribe({
-            next: (user) => {
-              if (user.jointIntensities && user.jointIntensities?.length > 0) {
-                this.selectionService.setJointIntensities(user.jointIntensities);
-                this.openModal();
-              } else {
-                this.route.navigate(['/login/userinfo']);
-              }
-            },
-            error: (err) => {
-              console.log(err);
-            },
-          });
+      
+      // Fix: Check the return type of login method and handle accordingly
+      this.authSubscription = this.authService.login(res.idToken).subscribe({
+        next: (result) => {
+          // If the result is an AuthDTO object
+          if (result && typeof result === 'object' && 'accessToken' in result) {
+            const auth = result as AuthDTO;
+            console.log('AccessToken: ', auth.accessToken);
+            console.log('RefreshToken: ', auth.refreshToken);
+            this.authService.setAuthToken(auth);
+            
+            this.userService.getInfo().subscribe({
+              next: (user) => {
+                if (user.jointIntensities && user.jointIntensities?.length > 0) {
+                  this.selectionService.setJointIntensities(user.jointIntensities);
+                  this.openModal();
+                } else {
+                  this.route.navigate(['/login/userinfo']);
+                }
+              },
+              error: (err) => {
+                console.log(err);
+              },
+            });
+          } 
+          // If the result is a boolean
+          else if (typeof result === 'boolean') {
+            if (result) {
+              // Assuming true means success
+              this.userService.getInfo().subscribe({
+                next: (user) => {
+                  if (user.jointIntensities && user.jointIntensities?.length > 0) {
+                    this.selectionService.setJointIntensities(user.jointIntensities);
+                    this.openModal();
+                  } else {
+                    this.route.navigate(['/login/userinfo']);
+                  }
+                },
+                error: (err) => {
+                  console.log(err);
+                },
+              });
+            } else {
+              console.log("Login failed");
+            }
+          }
         },
         error: (error: any) => {
           console.log(
             "Something ain't right!",
-            `The error is: ${error.error.message}`
+            `The error is: ${error.error?.message || error.message}`
           );
-        },
+        }
       });
     });
+  }
+
+  // Add ngOnDestroy to prevent memory leaks
+  ngOnDestroy() {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
   }
 }
