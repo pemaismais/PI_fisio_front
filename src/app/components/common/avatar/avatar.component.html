@@ -20,7 +20,7 @@
         <li>
           <a class="dropdown-item" routerLink="/" >Inicio</a>
         </li>
-        @if(this.authService.hasPermission('ADMIN')){
+        @if(isAdmin){
           <li>
             <a class="dropdown-item" routerLink="/admin" >Admin</a>
           </li>

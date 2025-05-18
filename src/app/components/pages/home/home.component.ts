@@ -3,8 +3,9 @@ import { Router, RouterLink } from '@angular/router';
 import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
 import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
 import { AvatarComponent } from "../../common/avatar/avatar.component";
-import { AuthService } from '../../../services/auth.service';
 import { LogoComponent } from "../../common/logo/logo.component";
+import { KeycloakService } from 'keycloak-angular';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -12,9 +13,15 @@ import { LogoComponent } from "../../common/logo/logo.component";
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent  {
   constructor() {}
-  authService = inject(AuthService);
+  authService = inject(KeycloakService);
+  isLogged = false;
+
+   ngOnInit() {
+    if(this.authService.isLoggedIn())
+      this.isLogged =  true;    
+  }
 
   scrollToSection(section: HTMLElement){
     section.scrollIntoView({ behavior: 'smooth', block: 'center' });

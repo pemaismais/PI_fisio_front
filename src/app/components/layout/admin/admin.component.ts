@@ -4,9 +4,9 @@ import { AppComponent } from "../../../app.component";
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FooterComponent } from '../../common/footer/footer.component';
 import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
-import { AuthService } from '../../../services/auth.service';
 import { AvatarComponent } from "../../common/avatar/avatar.component";
 import { LogoComponent } from "../../common/logo/logo.component";
+import { KeycloakService } from 'keycloak-angular';
 @Component({
   selector: 'app-admin',
   standalone: true,
@@ -15,11 +15,14 @@ import { LogoComponent } from "../../common/logo/logo.component";
   styleUrl: './admin.component.scss'
 })
 export class AdminComponent {
-  authService = inject(AuthService)
+  authService = inject(KeycloakService)
   profilePicture: string = "";
 
-  ngOnInit(){
-    this.profilePicture = this.authService.getProfilePicture();
+  isLogged:boolean = false;
+  
+  async ngOnInit(){
+    this.isLogged = await this.authService.isLoggedIn();
+    //this.profilePicture = this.authService.getProfilePicture();
     console.log(this.profilePicture)
   }
 

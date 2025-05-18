@@ -5,12 +5,12 @@ import { SelectionService } from '../../../services/selection.service';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { JointIntensity } from '../../../models/user';
-import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user.service';
 import { ExerciseService } from '../../../services/exercise.service';
 import { forkJoin, Observable, throwError } from 'rxjs';
 import { LogoComponent } from "../../common/logo/logo.component";
 import { AvatarComponent } from "../../common/avatar/avatar.component";
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-result',
@@ -37,7 +37,7 @@ export class ResultComponent implements OnInit {
   constructor(
     private exerciseService: ExerciseService,
     private userService: UserService,
-    private authService: AuthService,
+    private authService: KeycloakService,
     private selectionService: SelectionService,
     private router: Router,
     private sanitizer: DomSanitizer // Add DomSanitizer for safe embedding
@@ -46,34 +46,34 @@ export class ResultComponent implements OnInit {
   ngOnInit() {
     // se for redirecionado (login ou form)
    
-    if (this.selectionService.getJointIntensities().length > 0) {
-      this.jointIntensities = this.selectionService.getJointIntensities();
-      this.selectedRegions = this.selectionService
-        .getJointIntensities()
-        .map((jointIntensity) => this.regionMap[jointIntensity.joint] || jointIntensity.joint);
-      this.fetchExercises();
-    } // Se tiver logado mas nao foi redirecionado
-    else if (this.authService.getAccessToken()) {
-      this.userService.getInfo().subscribe({
-        next: (user) => {
-          if (user.jointIntensities && user.jointIntensities?.length > 0) {
-            this.jointIntensities = user.jointIntensities;
-            this.jointIntensities.map((jointIntensity) =>{
-              this.selectedRegions.push(this.regionMap[jointIntensity.joint] || jointIntensity.joint)
-            });
+    // if (this.selectionService.getJointIntensities().length > 0) {
+    //   this.jointIntensities = this.selectionService.getJointIntensities();
+    //   this.selectedRegions = this.selectionService
+    //     .getJointIntensities()
+    //     .map((jointIntensity) => this.regionMap[jointIntensity.joint] || jointIntensity.joint);
+    //   this.fetchExercises();
+    // } // Se tiver logado mas nao foi redirecionado
+    // else if (this.authService.getAccessToken()) {
+    //   this.userService.getInfo().subscribe({
+    //     next: (user) => {
+    //       if (user.jointIntensities && user.jointIntensities?.length > 0) {
+    //         this.jointIntensities = user.jointIntensities;
+    //         this.jointIntensities.map((jointIntensity) =>{
+    //           this.selectedRegions.push(this.regionMap[jointIntensity.joint] || jointIntensity.joint)
+    //         });
 
-            this.fetchExercises();
-          } else {
-            this.router.navigate(['/login']);
-          }
-        },
-        error: (err) => {
-          this.router.navigate(['/login']);
-        },
-      });
-    } else {
-      this.router.navigate(['/login']);
-    }
+    //         this.fetchExercises();
+    //       } else {
+    //         this.router.navigate(['/login']);
+    //       }
+    //     },
+    //     error: (err) => {
+    //       this.router.navigate(['/login']);
+    //     },
+    //   });
+    // } else {
+    //   this.router.navigate(['/login']);
+    // }
    
   }
 

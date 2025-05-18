@@ -2,7 +2,7 @@ import { Component, inject, Inject } from '@angular/core';
 import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { RouterLink } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
+import { KeycloakService } from 'keycloak-angular';
 @Component({
   selector: 'app-footer',
   standalone: true,
@@ -11,5 +11,11 @@ import { AuthService } from '../../../services/auth.service';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  authService = inject(AuthService);
+  authService = inject(KeycloakService);
+
+  isAdmin = false;
+
+ngOnInit() {
+  this.isAdmin =  this.authService.isUserInRole('ADMIN');
+}
 }

@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { AuthService } from '../../../../services/auth.service';
 import { UserService } from '../../../../services/user.service';
 import { SelectionService } from '../../../../services/selection.service';
 import { ModalComponent } from '../../../common/modal/modal.component';
 import { MatButtonModule } from '@angular/material/button';
 import { GoogleSigninButtonModule, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-keycloak-login',
@@ -59,7 +59,7 @@ export class KeycloakLoginComponent implements OnInit {
   processingCallback: boolean = false;
 
   constructor(
-    private authService: AuthService,
+    private authService: KeycloakService,
     private userService: UserService,
     private selectionService: SelectionService,
     private router: Router,
@@ -68,45 +68,19 @@ export class KeycloakLoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Se o usuário já estiver logado, carrega os dados direto
-    if (this.authService.isLoggedIn()) {
-      this.checkUserData();
-      return;
-    }
 
-    // Aqui verifico se tem retorno do Keycloak (code e session_state)
-    this.route.queryParams.subscribe(params => {
-      if (params['code'] && params['session_state'] && !this.processingCallback) {
-        this.processingCallback = true;
-        console.log('Detectado callback do Keycloak');
-
-        // Pequeno delay pra garantir que o login seja processado
-        setTimeout(() => {
-          if (this.authService.isLoggedIn()) {
-            console.log('Usuário autenticado após callback');
-            this.checkUserData();
-          } else {
-            // Algo deu errado, provavelmente token não processado
-            console.error('Falha na autenticação após callback');
-            this.errorMessage = 'Erro durante a autenticação. Por favor, tente novamente.';
-
-            // Limpa os parâmetros da URL pra não ficar tentando de novo à toa
-            this.router.navigate([], {
-              relativeTo: this.route,
-              queryParams: {},
-              replaceUrl: true
-            });
-          }
-          this.processingCallback = false;
-        }, 1000);
-      }
-    });
   }
 
   loginWithKeycloak(): void {
     // Dispara o redirecionamento pro Keycloak
     try {
-      this.authService.loginWithKeycloak();
+      this.authService.login({
+        redirectUri: window.location.origin + '/login/userinfo',
+        idpHint: 'google', // força usar Google direto como provedor
+        prompt: 'login' // força mostrar a tela de login sempre
+        
+      });
+
     } catch (error) {
       console.error('Erro ao fazer login com Keycloak', error);
       this.errorMessage = 'Erro ao tentar fazer login. Por favor, tente novamente.';
@@ -118,11 +92,11 @@ export class KeycloakLoginComponent implements OnInit {
     this.userService.getInfo().subscribe({
       next: (user) => {
         // Pega o nome do usuário do token e salva no localStorage
-        this.authService.getUserInfo().then(profile => {
-          if (profile && profile.name) {
-            localStorage.setItem('userName', profile.name);
-          }
-        });
+        // this.authService.getUserInfo().then(profile => {
+        //   if (profile && profile.name) {
+        //     localStorage.setItem('userName', profile.name);
+        //   }
+        // });
 
         // Verifica se já tem as intensidades articulares
         if (user.jointIntensities && user.jointIntensities?.length > 0) {

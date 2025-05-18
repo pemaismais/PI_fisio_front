@@ -3,7 +3,7 @@ import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { JointIntensity, User } from '../../../../models/user';
 import { Intensity } from '../../../../models/exercise';
 import { NgClass } from '@angular/common';
-import { AuthService } from '../../../../services/auth.service';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-userlist',
@@ -15,14 +15,15 @@ import { AuthService } from '../../../../services/auth.service';
 export class UserlistComponent {
   @Input('users') users: User[] = []
   @Output('changeRole') changeRoleEvent = new EventEmitter<User>();
-  constructor(private authService: AuthService){}
+  constructor(private authService: KeycloakService){}
   changeRole(user: User){
       this.changeRoleEvent.emit(user);
     }
     
     isMe(email: string): boolean {
-      const decoded = this.authService.jwtDecode(this.authService.getAccessToken() || '');
-      return typeof decoded === 'object' && 'username' in decoded ? decoded.username === email : false;
+      // const decoded = this.authService.jwtDecode(this.authService.getAccessToken() || '');
+      // return typeof decoded === 'object' && 'username' in decoded ? decoded.username === email : false;
+      return false
     }
 
   getBadgeClass(jointIntensity: JointIntensity): string {

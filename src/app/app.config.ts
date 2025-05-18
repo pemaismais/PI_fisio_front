@@ -3,9 +3,11 @@ import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
+  HTTP_INTERCEPTORS,
   provideHttpClient,
   withFetch,
   withInterceptors,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
 import {
@@ -15,21 +17,23 @@ import {
 } from '@abacritt/angularx-social-login';
 import { environment } from '../environments/environment';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { httpInterceptor } from './services/http-interceptor.service';
-import { KeycloakService } from './services/keycloak.service';
-import { AuthService } from './services/auth.service';
-
-
-export function initializeKeycloak(authService: AuthService) {
-  return () => authService.initKeycloak();
-}
-
-const googleLoginOptions: GoogleInitOptions = {
-  oneTapEnabled: false, 
-};
+import { KeycloakBearerInterceptor, KeycloakService } from 'keycloak-angular';
+import { initializeKeycloak } from './keycloak-init.factory';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    KeycloakService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: KeycloakBearerInterceptor,
+      multi: true
+    },
     provideRouter(
       routes,
       withInMemoryScrolling({
@@ -38,33 +42,8 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideAnimations(),
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              environment.GOOGLE_CLIENT_ID,
-              googleLoginOptions
-            ),
-          },
-        ],
-        onError: (err: any) => {
-          console.error(err);
-        },
-      } as SocialAuthServiceConfig,
-    },
     provideClientHydration(),
-    provideHttpClient(withFetch(), withInterceptors([httpInterceptor])),
+    provideHttpClient(withFetch(), withInterceptorsFromDi()),
     provideAnimationsAsync(),
-  
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeKeycloak,
-      multi: true,
-      deps: [AuthService]
-    }
   ],
 };

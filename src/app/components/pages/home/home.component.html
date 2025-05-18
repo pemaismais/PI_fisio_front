@@ -39,7 +39,7 @@
       </ul>
       <!-- Left links -->
       <div class="d-flex justify-content-center">
-        @if(this.authService.isLoggedIn()){
+        @if(this.isLogged){
           <app-avatar></app-avatar>
         }@else{
           <button routerLink="login" type="button" class="mt-2 mt-md-0 button-start">
