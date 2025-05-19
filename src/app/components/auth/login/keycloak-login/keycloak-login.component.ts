@@ -21,37 +21,8 @@ import { KeycloakService } from 'keycloak-angular';
     MatButtonModule
   ],
   providers: [MdbModalService],
-  template: `
-    <div class="d-flex flex-column main-container justify-content-around mb-3">
-      <h3 class="card-title">Faça login para continuar</h3>
-      <div class="d-flex justify-content-center mt-4">
-        <button pButton
-          label="Login com Google"
-          icon="pi pi-google"
-          class="p-button-raised"
-          (click)="loginWithKeycloak()">
-          Login com Google
-        </button>
-      </div>
-      <div *ngIf="errorMessage" class="alert alert-danger mt-3">
-        {{ errorMessage }}
-      </div>
-    </div>
-  `,
-  styles: [`
-    .main-container {
-      padding: 2rem;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    .card-title {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-  `]
+  templateUrl: './keycloak-login.component.html',
+  styleUrls: ['./keycloak-login.component.scss'],
 })
 export class KeycloakLoginComponent implements OnInit {
   errorMessage: string = '';
@@ -67,18 +38,19 @@ export class KeycloakLoginComponent implements OnInit {
     private modalService: MdbModalService
   ) {}
 
-  ngOnInit(): void {
-
+  async ngOnInit(): Promise<void> {
+    if (await this.authService.isLoggedIn()) {
+      this.checkUserData();
+    }
   }
 
   loginWithKeycloak(): void {
     // Dispara o redirecionamento pro Keycloak
     try {
       this.authService.login({
-        redirectUri: window.location.origin + '/login/userinfo',
+        redirectUri: window.location.origin + '/login',
         idpHint: 'google', // força usar Google direto como provedor
         prompt: 'login' // força mostrar a tela de login sempre
-        
       });
 
     } catch (error) {
@@ -91,13 +63,7 @@ export class KeycloakLoginComponent implements OnInit {
     // Busca as infos do usuário após login
     this.userService.getInfo().subscribe({
       next: (user) => {
-        // Pega o nome do usuário do token e salva no localStorage
-        // this.authService.getUserInfo().then(profile => {
-        //   if (profile && profile.name) {
-        //     localStorage.setItem('userName', profile.name);
-        //   }
-        // });
-
+        console.log(user)
         // Verifica se já tem as intensidades articulares
         if (user.jointIntensities && user.jointIntensities?.length > 0) {
           this.selectionService.setJointIntensities(user.jointIntensities);

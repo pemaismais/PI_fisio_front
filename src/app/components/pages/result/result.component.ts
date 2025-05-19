@@ -46,34 +46,33 @@ export class ResultComponent implements OnInit {
   ngOnInit() {
     // se for redirecionado (login ou form)
    
-    // if (this.selectionService.getJointIntensities().length > 0) {
-    //   this.jointIntensities = this.selectionService.getJointIntensities();
-    //   this.selectedRegions = this.selectionService
-    //     .getJointIntensities()
-    //     .map((jointIntensity) => this.regionMap[jointIntensity.joint] || jointIntensity.joint);
-    //   this.fetchExercises();
-    // } // Se tiver logado mas nao foi redirecionado
-    // else if (this.authService.getAccessToken()) {
-    //   this.userService.getInfo().subscribe({
-    //     next: (user) => {
-    //       if (user.jointIntensities && user.jointIntensities?.length > 0) {
-    //         this.jointIntensities = user.jointIntensities;
-    //         this.jointIntensities.map((jointIntensity) =>{
-    //           this.selectedRegions.push(this.regionMap[jointIntensity.joint] || jointIntensity.joint)
-    //         });
+    if (this.selectionService.getJointIntensities().length > 0) {
+      this.jointIntensities = this.selectionService.getJointIntensities();
+      this.selectedRegions = this.selectionService
+        .getJointIntensities()
+        .map((jointIntensity) => this.regionMap[jointIntensity.joint] || jointIntensity.joint);
+      this.fetchExercises();
+    } 
+    // Se tiver logado mas nao foi redirecionado
+    else{
+      this.userService.getInfo().subscribe({
+        next: (user) => {
+          if (user.jointIntensities && user.jointIntensities?.length > 0) {
+            this.jointIntensities = user.jointIntensities;
+            this.jointIntensities.map((jointIntensity) =>{
+              this.selectedRegions.push(this.regionMap[jointIntensity.joint] || jointIntensity.joint)
+            });
 
-    //         this.fetchExercises();
-    //       } else {
-    //         this.router.navigate(['/login']);
-    //       }
-    //     },
-    //     error: (err) => {
-    //       this.router.navigate(['/login']);
-    //     },
-    //   });
-    // } else {
-    //   this.router.navigate(['/login']);
-    // }
+            this.fetchExercises();
+          } else {
+            this.router.navigate(['/login']);
+          }
+        },
+        error: (err) => {
+          this.router.navigate(['/login']);
+        },
+      });
+  }
    
   }
 

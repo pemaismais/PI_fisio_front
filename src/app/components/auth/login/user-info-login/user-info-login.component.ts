@@ -9,6 +9,8 @@ import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { formatDate, NgClass } from '@angular/common';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { UserService } from '../../../../services/user.service';
+import { KeycloakService } from 'keycloak-angular';
+import { KeycloakProfile } from 'keycloak-js';
 
 @Component({
   selector: 'app-user-info-login',
@@ -33,14 +35,30 @@ export class UserInfoLoginComponent {
   route = inject(Router)
   userService = inject(UserService);
   user: User = new User(null,null, null, null, null, null, null, [], null);
+  authService = inject(KeycloakService);
 
   readonly chipClasses = signal<string[]>([]);
 
-  ngOnInit() {
-    const userName = localStorage.getItem('userName');
-    if(userName){
+  async loadUserProfile(): Promise< KeycloakProfile | null> {
+    try {
+      if (this.authService.isLoggedIn()) {
+        console.log('Usuário está logado');
+        return await this.authService.loadUserProfile();
+      } else {
+        console.log('Usuário não está logado');
+        return null;
+      }
+    } catch (error) {
+      console.error('Erro ao carregar o perfil do usuário', error);
+      return null;
+    }
+  }
+
+  async ngOnInit() {
+    const user = await this.loadUserProfile();
+    if(user){
       this.formGroup.patchValue({
-        name: userName,
+        name: user.firstName + ' ' + user.lastName,
       })
     }
 

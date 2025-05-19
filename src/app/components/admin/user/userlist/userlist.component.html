@@ -4,7 +4,6 @@
       <tr>
         <th>Id</th>
         <th>Nome</th>
-        <th>Papel</th>
         <th>Turmas</th>
         <th>Disciplina</th>
         <th>Articulação e intensidade de dor</th>
@@ -27,12 +26,6 @@
               <p class="text-muted mb-0">{{user.email}}</p>
             </div>
           </div>
-        </td>
-        <td class="d-flex justify-content-around flex-wrap">
-          {{user.role}}
-          @if(!isMe(user.email || '')){
-            <a class="change-role-button" (click)="user.id && changeRole(user)"><i class="fas fa-exchange-alt"></i></a>
-          }
         </td>
         <td >
           <div class="d-flex gap-2 align-items-center "> 

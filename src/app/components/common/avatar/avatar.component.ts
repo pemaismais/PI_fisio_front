@@ -14,7 +14,7 @@ export class AvatarComponent {
   userAvatar: String = '';
   authService = inject(KeycloakService);
   constructor(){
-    //this.userAvatar = this.authService.getProfilePicture();
+    this.userAvatar = this.getProfilePicture() 
     console.log('User avatar: ', this.userAvatar);
   }
 
@@ -22,5 +22,9 @@ export class AvatarComponent {
 
    ngOnInit() {
     this.isAdmin = this.authService.isUserInRole('ADMIN');
+  }
+  getProfilePicture(): string {
+    const token = this.authService.getKeycloakInstance().idTokenParsed;
+    return token ? token['picture'] as string : '';
   }
 }

@@ -2,13 +2,18 @@ import { KeycloakService } from "keycloak-angular";
 import { environment } from "../environments/environment";
 
 export function initializeKeycloak(keycloak: KeycloakService) {
-    
+    console.log('Keycloak url: ' + environment.keycloak.url);
+    const keycloakConfig = {
+        url: environment.keycloak.url,
+        realm: environment.keycloak.realm,
+        clientId: environment.keycloak.clientId 
+    };
     return () =>
         keycloak.init({
             config: {
-                url: environment.keycloak.url ?? 'http://localhost:7080',
-                realm: environment.keycloak.realm ?? 'main_realm',
-                clientId: environment.keycloak.clientId ?? 'led',
+                url: keycloakConfig.url,
+                realm: keycloakConfig.realm,
+                clientId: keycloakConfig.clientId,
             },
             initOptions: {
                 onLoad: 'check-sso',

@@ -1,4 +1,17 @@
-<div class="d-flex flex-column main-container justify-content-around mb-3">
-  <h3 class="card-title">Faça login para continuar</h3>
-    <app-google-signin (loginWithGoogle)="googleSignin($event)"></app-google-signin>
+<div class="d-flex flex-column justify-content-around mb-3">
+  <h3 class="py-3">Faça login para continuar</h3>
+  <div class="d-flex justify-content-center mt-4">
+    <button 
+      class="btn btn-light border d-flex align-items-center px-4 py-2 fs-6"
+      (click)="loginWithKeycloak()">
+    <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/google.svg" alt="G" width="25" height="25" class="me-2">
+      Login com Google
+    </button>
+  </div>
+  @if(errorMessage){
+    <div class="alert alert-danger mt-3">
+      {{ errorMessage }}
+    </div>
+  }
+
 </div>

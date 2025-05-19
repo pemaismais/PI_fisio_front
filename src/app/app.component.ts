@@ -13,6 +13,8 @@ export class AppComponent {
   title = 'PI_fisio_front';
   constructor() {
     console.log('Backend url: '+ environment.BACKEND_URL);
+    console.log('Keycloak realm: '+ environment.keycloak.realm);
+    console.log('Keycloak clientId: '+ environment.keycloak.clientId);
     }
   }
 
