@@ -15,6 +15,7 @@ import { NgModule } from '@angular/core';
 import { MainFormComponent } from './components/pages/form/main-form/main-form.component';
 import { KeycloakLoginComponent } from './components/auth/login/keycloak-login/keycloak-login.component';
 import { AuthGuard } from './guard/auth.guard';
+import { LogComponent } from './components/logs/logs.component';
 
 export const routes: Routes = [
   {
@@ -28,7 +29,10 @@ export const routes: Routes = [
         component: ResultComponent,
         children: [{ path: 'modal', component: ModalComponent }],
       },
-     
+    //  {
+    //   path: 'logs',
+    //   component: LogComponent,
+    //  },
       {
         path: 'login',
         component: MainLoginComponent,
@@ -62,6 +66,8 @@ export const routes: Routes = [
       { path: '', redirectTo: 'exercise', pathMatch: 'full' },
       { path: 'exercise', component: ExerciseManagementComponent },
       { path: 'user', component: UserManagementComponent },
+      { path: 'logs', component: LogComponent },
+
     ],
   },
   { path: '**', redirectTo: '' },

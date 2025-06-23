@@ -1,0 +1,48 @@
+<div class="container mt-4">
+  <h3 class="mb-3">Visualização de Logs</h3>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Data</th>
+          <th>Usuário</th>
+          <th>Tipo de Revisão</th>
+          <th>Entidade</th>
+          <th>Detalhes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of logs">
+          <td>{{ log.revisionTimestamp | date:'short' }}</td>
+          <td>{{ log.username }}</td>
+          <td>{{ log.revisionType }}</td>
+          <td>{{ log.entityName }}</td>
+          <td>
+            <pre>{{ log.entity | json }}</pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <nav aria-label="Paginação de logs">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="page === 0">
+        <button class="page-link" (click)="goToPage(page - 1)">Anterior</button>
+      </li>
+
+      <li
+        class="page-item"
+        *ngFor="let p of [].constructor(totalPages); let i = index"
+        [class.active]="i === page"
+      >
+        <button class="page-link" (click)="goToPage(i)">{{ i + 1 }}</button>
+      </li>
+
+      <li class="page-item" [class.disabled]="page === totalPages - 1">
+        <button class="page-link" (click)="goToPage(page + 1)">Próximo</button>
+      </li>
+    </ul>
+  </nav>
+</div>

@@ -6,48 +6,33 @@ import { KeycloakAuthGuard, KeycloakService } from "keycloak-angular";
   providedIn: 'root'
 })
 export class AuthGuard extends KeycloakAuthGuard {
-
-  constructor(
-    protected override readonly router: Router,
-    protected readonly keycloak: KeycloakService
-  ) {
-    super(router, keycloak);
+  constructor(protected override router: Router, protected override keycloakAngular: KeycloakService) {
+    super(router, keycloakAngular);
   }
 
-  async isAccessAllowed(): Promise<boolean | UrlTree> {
+  public async isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
+    const requiredRoles = route.data['roles'] as string[] | undefined;
+
+    this.authenticated = await this.keycloakAngular.isLoggedIn();
+
     if (!this.authenticated) {
-      console.log('Not authenticated')
-      return this.router.parseUrl('/home');
+      await this.keycloakAngular.login({ redirectUri: window.location.origin + state.url });
+      return false;
     }
-    console.log('Authenticated')
+
+    this.roles = this.keycloakAngular.getUserRoles();
+
+    console.log("Roles: ", this.roles);
+    console.log("Required Roles: ", requiredRoles);
+    if (!requiredRoles || requiredRoles.length === 0) {
+      return true;
+    }
+
+    const hasRole = requiredRoles.some(role => this.roles.includes(role));
+    if (!hasRole) {
+      return this.router.parseUrl('/unauthorized'); // ou outra rota de acesso negado
+    }
+
     return true;
   }
-
-  // constructor(protected override router: Router, protected override keycloakAngular: KeycloakService) {
-  //   super(router, keycloakAngular);
-  // }
-
-  // public async isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
-  //   const requiredRoles = route.data['roles'] as string[] | undefined;
-
-  //   this.authenticated = await this.keycloakAngular.isLoggedIn();
-
-  //   if (!this.authenticated) {
-  //     await this.keycloakAngular.login({ redirectUri: window.location.origin + state.url });
-  //     return false;
-  //   }
-
-  //   this.roles = this.keycloakAngular.getUserRoles();
-
-  //   if (!requiredRoles || requiredRoles.length === 0) {
-  //     return true;
-  //   }
-
-  //   const hasRole = requiredRoles.some(role => this.roles.includes(role));
-  //   if (!hasRole) {
-  //     return this.router.parseUrl('/unauthorized'); // ou outra rota de acesso negado
-  //   }
-
-  //   return true;
-  // }
 }

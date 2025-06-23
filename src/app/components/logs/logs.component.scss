@@ -1,0 +1,131 @@
+/* Estilos para o componente de visualização de logs */
+
+/* Ajustes gerais para o contêiner */
+.container {
+  padding-top: 2rem; /* Adiciona um bom espaçamento no topo da página */
+  padding-bottom: 2rem; /* Adiciona espaçamento na parte inferior */
+  background-color: #ffffff; /* Fundo branco para o conteúdo principal */
+  border-radius: 8px; /* Cantos levemente arredondados para um visual mais suave */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra sutil para destacar o contêiner */
+}
+
+/* Estilo para o título principal da página */
+h3 {
+  color: #212529; /* Uma cor escura para o texto do título */
+  font-weight: 700; /* Título em negrito para maior destaque */
+  text-align: center; /* Centraliza o título */
+  margin-bottom: 2.5rem; /* Aumenta o espaçamento abaixo do título */
+  position: relative; /* Necessário para o pseudo-elemento */
+}
+
+/* Linha decorativa abaixo do título */
+h3::after {
+  content: '';
+  display: block;
+  width: 60px; /* Largura da linha */
+  height: 3px; /* Espessura da linha */
+  background-color: #007bff; /* Cor azul primária do Bootstrap */
+  margin: 0.5rem auto 0; /* Centraliza a linha e dá um pequeno espaçamento */
+  border-radius: 2px; /* Cantos arredondados para a linha */
+}
+
+/* Estilo para a tabela */
+.table {
+  width: 100%; /* Garante que a tabela ocupe a largura total */
+  margin-bottom: 1.5rem; /* Espaçamento abaixo da tabela */
+}
+
+/* Estilo para o cabeçalho da tabela */
+.table-dark th {
+  background-color: #343a40; /* Garante que o fundo seja o preto padrão do Bootstrap */
+  color: #fff; /* Texto branco */
+  font-weight: 600; /* Seminegrito para os títulos das colunas */
+  vertical-align: middle; /* Alinha o texto no meio verticalmente */
+  padding: 1rem; /* Aumenta um pouco o padding para melhor visual */
+  text-align: center; /* Centraliza o texto nos cabeçalhos */
+}
+
+/* Estilo para as células do corpo da tabela */
+.table tbody tr td {
+  vertical-align: middle; /* Alinha o texto no meio verticalmente */
+  padding: 0.75rem 1rem; /* Padding padrão para as células */
+  font-size: 0.95rem; /* Levemente menor que o padrão para dados mais compactos */
+}
+
+/* Centraliza o texto em algumas colunas para organização */
+.table tbody tr td:nth-child(1), /* Data */
+.table tbody tr td:nth-child(3) /* Tipo de Revisão */
+ {
+  text-align: center;
+}
+
+/* Estilização para o bloco <pre> dentro da coluna "Detalhes" */
+pre {
+  background-color: #f0f2f5; /* Um cinza claro suave para o fundo do código */
+  border: 1px solid #e0e0e0; /* Borda sutil */
+  border-radius: 6px; /* Cantos mais arredondados */
+  padding: 12px; /* Bom espaçamento interno */
+  max-height: 180px; /* Limita a altura máxima para evitar que o log ocupe muito espaço */
+  overflow-y: auto; /* Adiciona barra de rolagem vertical se o conteúdo for muito longo */
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; /* Fonte monoespaçada para código */
+  font-size: 0.85em; /* Reduz o tamanho da fonte para logs grandes */
+  line-height: 1.5; /* Altura da linha para melhor legibilidade */
+  white-space: pre-wrap; /* Garante que o texto quebre linhas, mas preserve espaços */
+  word-break: break-word; /* Ajuda a quebrar palavras longas para evitar overflow */
+  color: #333; /* Cor do texto para o código */
+}
+
+/* Estilo para os botões de paginação */
+.pagination {
+  margin-top: 2rem; /* Espaçamento acima da paginação */
+  margin-bottom: 1rem; /* Espaçamento abaixo da paginação */
+}
+
+.pagination .page-item .page-link {
+  border-radius: 0.25rem; /* Arredonda levemente os botões da paginação */
+  margin: 0 0.25rem; /* Adiciona um pequeno espaçamento entre os botões */
+  transition: all 0.2s ease-in-out; /* Transição suave para o efeito hover */
+  background-color: #f8f9fa; /* Fundo cinza claro para os links */
+  border-color: #dee2e6; /* Borda padrão */
+  color: #007bff; /* Cor do texto primária do Bootstrap */
+  min-width: 40px; /* Garante uma largura mínima para os botões */
+  text-align: center; /* Centraliza o texto */
+}
+
+.pagination .page-item .page-link:hover {
+  background-color: #e9ecef; /* Cor de fundo ao passar o mouse */
+  border-color: #ced4da; /* Borda ao passar o mouse */
+  color: #0056b3; /* Cor do texto mais escura ao passar o mouse */
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff; /* Fundo azul para a página ativa */
+  border-color: #007bff; /* Borda azul para a página ativa */
+  color: #fff; /* Texto branco na página ativa */
+  font-weight: 600; /* Texto seminegrito para a página ativa */
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2); /* Sombra sutil para a página ativa */
+}
+
+.pagination .page-item.active .page-link:hover {
+  background-color: #0069d9; /* Azul um pouco mais escuro ao passar o mouse na página ativa */
+  border-color: #0062cc; /* Borda mais escura */
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #6c757d; /* Cor mais suave para links desabilitados */
+  pointer-events: none; /* Desabilita eventos de ponteiro para links desabilitados */
+  background-color: #e9ecef; /* Fundo levemente cinza para links desabilitados */
+  border-color: #dee2e6; /* Borda padrão para links desabilitados */
+}
+
+/* Mensagem de nenhum log encontrado */
+.alert.alert-info {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  font-size: 1.1rem;
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+  border-radius: 8px;
+}

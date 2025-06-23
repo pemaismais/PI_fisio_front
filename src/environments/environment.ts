@@ -1,10 +1,10 @@
 export const environment = {
   production: true,
-  BACKEND_URL: 'https://backend.fisio.lan:8443/pi_fisio',
-  
+  BACKEND_URL: 'https://haproxy.fisio.com/pi_fisio',
+
   keycloak: {
-      url: 'https://backend.fisio.lan:7443', 
-      realm: 'main_realm',
-      clientId: 'led',
+    url: 'https://backend.fisio.com:7443',
+    realm: 'main_realm',
+    clientId: 'led',
   },
-  };
+};
